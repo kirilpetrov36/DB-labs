@@ -1,0 +1,29 @@
+ create table first as
+    -> select distinct classroom_id
+    -> from schedule
+    -> where id <= 8;
+
+create table second as
+    -> select distinct classroom_id
+    -> from schedule
+    -> where id > 8;
+
+SELECT * from
+    -> first
+    -> UNION
+    -> SELECT * from
+    -> second;
+
+SELECT * FROM
+    -> first
+    -> WHERE classroom_id
+    -> IN (SELECT * FROM second);
+
+SELECT * FROM
+    -> first
+    -> WHERE classroom_id NOT IN
+    -> (SELECT * FROM second);
+
+SELECT * FROM
+    -> first,
+    -> second;
